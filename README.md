@@ -1,9 +1,9 @@
 # RESTfulWebAPI
 
-## Famework 
+## Framework 
 ・Swagger(NSwag)
 
 ## Development of
 ・NET Core  
 ・Postgres  
-・EntityFamework
+・EntityFramework
