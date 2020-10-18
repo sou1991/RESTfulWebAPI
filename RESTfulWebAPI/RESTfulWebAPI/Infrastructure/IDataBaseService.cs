@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RESTfulWebAPI.Infrastructure
 {
-    interface IDataBaseService
+    public interface IDataBaseService
     {
         DbSet<MovieEntity> Movie { get; set; }
         void Save();

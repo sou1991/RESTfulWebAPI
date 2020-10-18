@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RESTfulWebAPI.Entities
+namespace RESTfulWebAPI.Models
 {
-    public class MovieEntity : IEntity
+    public class MovieModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         public string title { get; set; }
