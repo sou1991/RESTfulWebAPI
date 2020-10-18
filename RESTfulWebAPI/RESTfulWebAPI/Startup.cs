@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RESTfulWebAPI.Infrastructure;
 
 namespace RESTfulWebAPI
 {
@@ -27,6 +29,11 @@ namespace RESTfulWebAPI
         {
             services.AddControllers();
             services.AddOpenApiDocument();
+
+            services.AddDbContext<DataBaseService>(options =>
+            {
+                options.UseNpgsql(Configuration.GetValue<string>("ConnString"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
