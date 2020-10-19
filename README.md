@@ -1,6 +1,5 @@
 # RESTfulWebAPI
-Swagger動作確認用リポジトリ
-Get/Post/Put/DeleteのAPIを実装
+Swagger動作確認用リポジトリ  Get/Post/Put/DeleteのAPIを実装
 
 ## Framework 
 ・Swagger(NSwag)
@@ -8,5 +7,5 @@ Get/Post/Put/DeleteのAPIを実装
 ## Development of
 ・NET Core  
 ・Postgres  
-・EntityFramework
+・EntityFramework  
 ・Nunit
