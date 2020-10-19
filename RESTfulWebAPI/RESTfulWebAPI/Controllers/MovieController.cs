@@ -16,14 +16,17 @@ namespace RESTfulWebAPI.Controllers
         ISearchMovieQuery _serachMovieQuery;
         IUpdateMovieCommand _updateMovieCommand;
         ICreateMovieCommand _createMovieCommand;
+        IDeleteMovieCommand _deleteMovieCommand;
 
         public MovieController(ISearchMovieQuery serachMovieQuery, 
             IUpdateMovieCommand updateMovieCommand,
-            ICreateMovieCommand createMovieCommand)
+            ICreateMovieCommand createMovieCommand,
+            IDeleteMovieCommand deleteMovieCommand)
         {
             this._serachMovieQuery = serachMovieQuery;
             this._updateMovieCommand = updateMovieCommand;
             this._createMovieCommand = createMovieCommand;
+            this._deleteMovieCommand = deleteMovieCommand;
         }
 
 
@@ -61,6 +64,20 @@ namespace RESTfulWebAPI.Controllers
                 return NoContent();
             }
             catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("{prmID}")]
+        public ActionResult Delete(int prmID)
+        {
+            try
+            {
+                _deleteMovieCommand.Execute(new MovieModel { id = prmID });
+                return NoContent();
+            }
+            catch(Exception ex)
             {
                 return BadRequest();
             }
