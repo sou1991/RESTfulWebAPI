@@ -34,6 +34,7 @@ namespace RESTfulWebAPI
             services.AddTransient<IDataBaseService, DataBaseService>();
             services.AddTransient<IUpdateMovieCommand, UpdateMovieCommand>();
             services.AddTransient<ICreateMovieCommand, CreateMovieCommand>();
+            services.AddTransient<IDeleteMovieCommand, DeleteMovieCommand>(); 
 
 
             services.AddControllers();
