@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RESTfulWebAPI.Application;
+using RESTfulWebAPI.Application.Movie.Commands;
 using RESTfulWebAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,12 @@ namespace RESTfulWebAPI.Controllers
     public class MovieController : ControllerBase
     {
         ISearchMovieQuery _serachMovieQuery;
-        public MovieController(ISearchMovieQuery serachMovieQuery)
+        IUpdateMovieCommand _updateMovieCommand;
+
+        public MovieController(ISearchMovieQuery serachMovieQuery, IUpdateMovieCommand updateMovieCommand)
         {
             this._serachMovieQuery = serachMovieQuery;
+            this._updateMovieCommand = updateMovieCommand;
         }
 
 
@@ -28,6 +32,20 @@ namespace RESTfulWebAPI.Controllers
                 return NotFound();
             }
             return result;
+        }
+
+        [HttpPut]
+        public IActionResult Update(MovieModel movieModel)
+        {
+            try
+            {
+                _updateMovieCommand.Execute(movieModel);
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RESTfulWebAPI.Application;
+using RESTfulWebAPI.Application.Movie.Commands;
+using RESTfulWebAPI.Application.Movie.Querys;
 using RESTfulWebAPI.Infrastructure;
 
 namespace RESTfulWebAPI
@@ -29,6 +32,8 @@ namespace RESTfulWebAPI
         {
             services.AddTransient<ISearchMovieQuery, SearchMovieQuery>();
             services.AddTransient<IDataBaseService, DataBaseService>();
+            services.AddTransient<IUpdateMovieCommand, UpdateMovieCommand>();
+            
 
             services.AddControllers();
             services.AddOpenApiDocument();
