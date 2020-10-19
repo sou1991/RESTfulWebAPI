@@ -33,7 +33,8 @@ namespace RESTfulWebAPI
             services.AddTransient<ISearchMovieQuery, SearchMovieQuery>();
             services.AddTransient<IDataBaseService, DataBaseService>();
             services.AddTransient<IUpdateMovieCommand, UpdateMovieCommand>();
-            
+            services.AddTransient<ICreateMovieCommand, CreateMovieCommand>();
+
 
             services.AddControllers();
             services.AddOpenApiDocument();

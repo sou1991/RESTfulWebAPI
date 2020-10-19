@@ -15,11 +15,15 @@ namespace RESTfulWebAPI.Controllers
     {
         ISearchMovieQuery _serachMovieQuery;
         IUpdateMovieCommand _updateMovieCommand;
+        ICreateMovieCommand _createMovieCommand;
 
-        public MovieController(ISearchMovieQuery serachMovieQuery, IUpdateMovieCommand updateMovieCommand)
+        public MovieController(ISearchMovieQuery serachMovieQuery, 
+            IUpdateMovieCommand updateMovieCommand,
+            ICreateMovieCommand createMovieCommand)
         {
             this._serachMovieQuery = serachMovieQuery;
             this._updateMovieCommand = updateMovieCommand;
+            this._createMovieCommand = createMovieCommand;
         }
 
 
@@ -32,6 +36,20 @@ namespace RESTfulWebAPI.Controllers
                 return NotFound();
             }
             return result;
+        }
+
+        [HttpPost]
+        public ActionResult<MovieModel> Create(MovieModel movieModel)
+        {
+            try
+            {
+                _createMovieCommand.Execute(movieModel);
+                 return CreatedAtAction(nameof(Get), new { prmID = movieModel.id }, movieModel);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPut]
